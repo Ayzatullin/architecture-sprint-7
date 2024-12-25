@@ -1,0 +1,20 @@
+@startuml
+top to bottom direction
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+title PropDevelopment Context Diagram
+
+Person(owner, "Owner", "Собственник квартиры")
+System(SmartHome, "SmartHome", "Сервисы умного дома")
+System(HomeService, "HomeService", "Сервисы ЖКУ")
+
+System_Ext(EBS, "EBS", "Единая биометрическая система")
+System_Ext(SmartHomeApi, "SmartHome API", "Партнерские сервисы умного дома")
+
+Rel_D(owner, HomeService, "Управляет домофоном и шлагбаумом")
+Rel_R(HomeService, SmartHome, "Запросы на управление домом")
+Rel_D(SmartHome, SmartHomeApi, "Отправляет команды на открытие / закрытие")
+Rel_U(SmartHomeApi, SmartHome, "Передает данные для получения доступа и запрашивает разрешение")
+Rel_R(SmartHome, EBS, "Запрашивает аутентификацию по биометрии. Передает биометрические данные")
+
+@enduml
