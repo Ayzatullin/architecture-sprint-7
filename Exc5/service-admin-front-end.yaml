@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-front-end-app
+  labels:
+    app: admin-front-end
+spec:
+  type: ClusterIP
+  selector:
+    app: admin-front-end
+  ports:
+    - protocol: TCP
+      port: 82
+      targetPort: 82
